@@ -40,7 +40,7 @@ export default function App() {
         );
     } else {
         logLink = (
-        <Nav.Link className='ml-md-auto' href='/login'>Log In</Nav.Link>
+        <Nav.Link as={Link} className='ml-md-auto' to='/login'>Log In</Nav.Link>
         );
     }
 

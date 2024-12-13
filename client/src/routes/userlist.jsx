@@ -14,7 +14,7 @@ export default function UserList(props) {
 
     const getUsers = async () => {
         try {
-            const response = await fetch("http://localhost:5000/users/userswfollows", {
+            const response = await fetch(import.meta.env.VITE_API_URL+"users/userswfollows", {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
@@ -33,7 +33,7 @@ export default function UserList(props) {
     }, []);
 
     const follow = (tfId) => {
-        fetch("http://localhost:5000/users/follow", {
+        fetch(import.meta.env.VITE_API_URL+"users/follow", {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -53,7 +53,7 @@ export default function UserList(props) {
     }
 
     const unFollow = async (ufId) => {
-        const response = await fetch("http://localhost:5000/users/unfollow", {
+        const response = await fetch(import.meta.env.VITE_API_URL+"users/unfollow", {
             method: 'DELETE',
             credentials: 'include',
             headers: {

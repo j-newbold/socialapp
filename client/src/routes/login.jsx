@@ -21,7 +21,7 @@ export default function Login() {
     const createAccount = e => {
         e.preventDefault();
         try {
-            fetch('http://localhost:5000/auth/signup', {
+            fetch(import.meta.env.VITE_API_URL+'auth/signup', {
                 method: 'post',
                 headers: { "Content-Type": "application/json"
                 },

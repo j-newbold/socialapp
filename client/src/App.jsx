@@ -12,7 +12,7 @@ export default function App() {
 
     const logOut =  () => {
         try {
-        fetch('http://localhost:5000/auth/logout', {
+        fetch(import.meta.env.VITE_API_URL+'auth/logout', {
             method: 'post',
             credentials: 'include',
             headers: { "Content-Type": "application/json"

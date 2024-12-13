@@ -13,7 +13,7 @@ export default function Home(props) {
 
     const getPosts = async () => {
         try {
-            const response = await fetch('http://localhost:5000/posts/posts', {
+            const response = await fetch(import.meta.env.VITE_API_URL+'posts/posts', {
                 method: 'get',
                 credentials: 'include',
                 headers: { "Content-Type": "application/json"
@@ -31,7 +31,7 @@ export default function Home(props) {
     }, []);
 
     const deletePost = (index) => {
-        fetch('http://localhost:5000/posts/post', {
+        fetch(import.meta.env.VITE_API_URL+'posts/post', {
             method: 'delete',
             credentials: 'include',
             headers: { "Content-Type": "application/json"

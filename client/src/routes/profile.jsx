@@ -19,7 +19,7 @@ export default function Profile() {
 
     const deleteAccount = () => {
         try {
-            fetch('http://localhost:5000/auth/deleteacc', {
+            fetch(import.meta.env.VITE_API_URL+'auth/deleteacc', {
                 method: 'delete',
                 credentials: 'include',
                 headers: { "Content-Type": "application/json"
@@ -37,7 +37,7 @@ export default function Profile() {
     const saveName = e => {
         try {
             e.preventDefault();
-            fetch('http://localhost:5000/users/changename', {
+            fetch(import.meta.env.VITE_API_URL+'users/changename', {
                 method: 'post',
                 credentials: 'include',
                 headers: { "Content-Type": "application/json"

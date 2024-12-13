@@ -10,7 +10,7 @@ export default function CreatePost() {
     const submitPost = e => {
         e.preventDefault();
         try {
-            fetch('http://localhost:5000/posts/createpost', {
+            fetch(import.meta.env.VITE_API_URL+'posts/createpost', {
                 method: 'post',
                 credentials: 'include',
                 headers: { "Content-Type": "application/json"

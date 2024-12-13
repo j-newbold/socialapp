@@ -39,7 +39,7 @@ export default function Login() {
     const login = e => {
         e.preventDefault();
         try {
-            fetch('http://localhost:5000/auth/login', {
+            fetch(import.meta.env.VITE_API_URL+'auth/login', {
                 method: 'post',
                 credentials: 'include',
                 headers: { "Content-Type": "application/json"
@@ -63,7 +63,7 @@ export default function Login() {
     const logOut = e => {
         e.preventDefault()
         try {
-            fetch('http://localhost:5000/auth/logout', {
+            fetch(import.meta.env.VITE_API_URL+'auth/logout', {
                 method: 'post',
                 credentials: 'include'
             }).then((result) => {

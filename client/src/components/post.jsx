@@ -23,7 +23,7 @@ export default function Post(props) {
                 {props.info.post_title}
             </h1>
             <div>
-                {props.info.post_body}
+                {props.info.content}
             </div>
             {hasDel? <button
                         className="btn btn-danger btn-primary"

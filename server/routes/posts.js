@@ -25,6 +25,7 @@ router.post('/createpost', async (req, res) => {
 })
 
 router.get('/posts', async (req, res) => {
+    console.log('get posts');
     if (req.user) {
 /*         const query = `SELECT *
             FROM posts p

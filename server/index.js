@@ -13,6 +13,7 @@ app.use(cors(corsOptions));
 var passport = require('passport');
 require('./strategies/local-strategy.js')(passport);
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session);
 
 const authRouter = require('./routes/auth.js');
 const usersRouter = require('./routes/users.js');
@@ -28,6 +29,9 @@ app.use(session({
     cookie: {
         maxAge: 60000 * 60
     },
+    store: new session.MemoryStore({
+        checkPeriod: 86400000
+    })
 }));
 
 app.use(passport.initialize());

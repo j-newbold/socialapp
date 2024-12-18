@@ -13,6 +13,7 @@ export default function Home(props) {
 
     const getPosts = async () => {
         try {
+            console.log('endpoint: '+import.meta.env.VITE_API_URL+'posts/posts');
             const response = await fetch(import.meta.env.VITE_API_URL+'posts/posts', {
                 method: 'get',
                 credentials: 'include',

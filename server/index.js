@@ -7,6 +7,7 @@ const cors = require('cors');
 require('dotenv').config();
 const corsOptions = {
     origin: process.env.ORIGIN, // Change to your frontend's URL
+    methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true // Allow credentials (cookies, authorization headers, etc.)
 };
 app.use(cors(corsOptions));

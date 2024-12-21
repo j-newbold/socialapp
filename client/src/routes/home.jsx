@@ -11,9 +11,23 @@ export default function Home(props) {
         
     }
 
+    const getDefault = async () => {
+        try {
+            const response = await fetch(import.meta.env.VITE_API_URL+'', {
+                method: 'get',
+                credentials: 'include',
+                headers: { "Content-Type": "application/json"
+                }
+            });
+            const jsonData = await response.json();
+            console.log(jsonData);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     const getPosts = async () => {
         try {
-            console.log('endpoint: '+import.meta.env.VITE_API_URL+'posts/posts');
             const response = await fetch(import.meta.env.VITE_API_URL+'posts/posts', {
                 method: 'get',
                 credentials: 'include',
@@ -28,7 +42,8 @@ export default function Home(props) {
     }
 
     useEffect(() => {
-        getPosts();
+        getDefault();
+        //getPosts();
     }, []);
 
     const deletePost = (index) => {

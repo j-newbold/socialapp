@@ -44,6 +44,10 @@ app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter);
 
+app.get('/', (req, res) => {
+    res.json("hello there!");
+});
+
 
 app.get('/test', (req, res) => {
     res.send(req.session);

@@ -42,8 +42,8 @@ export default function Home(props) {
     }
 
     useEffect(() => {
-        getDefault();
-        //getPosts();
+        //getDefault();
+        getPosts();
     }, []);
 
     const deletePost = (index) => {

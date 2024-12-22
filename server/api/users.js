@@ -55,6 +55,7 @@ router.post('/follow', async (req, res) => {
         const { error } = await supabase
             .from('follows')
             .insert({ user_follower: req.user.userid, user_followed: req.body.userToFollow })
+        if (error) console.error(error)
         res.sendStatus(200);
     } catch (error) {
         console.log(error);

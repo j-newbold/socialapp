@@ -16,9 +16,9 @@ require('./strategies/local-strategy.js')(passport);
 const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 
-const authRouter = require('./routes/auth.js');
-const usersRouter = require('./routes/users.js');
-const postRouter = require('./routes/posts.js');
+const authRouter = require('./api/auth.js');
+const usersRouter = require('./api/users.js');
+const postRouter = require('./api/posts.js');
 
 app.use(express.json());
 app.use(cookieParser("helloworld"));
@@ -43,11 +43,6 @@ const pool = require('./db');
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter);
-
-app.get('/', (req, res) => {
-    res.json("hello there!");
-});
-
 
 app.get('/test', (req, res) => {
     res.send(req.session);

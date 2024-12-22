@@ -26,6 +26,7 @@ router.post('/createpost', async (req, res) => {
 
 router.get('/posts', async (req, res) => {
     if (req.user) {
+        //console.log('user found');
 /*         const query = `SELECT *
             FROM posts p
             LEFT JOIN follows f
@@ -36,20 +37,13 @@ router.get('/posts', async (req, res) => {
             .rpc('get_posts', {
                 user_follower_id: req.user.userid
             })
+        //console.log(data);
         res.json(data);
     } else {
 /*         const result = await pool.query(`select post_id, post_title, post_body, post_date, usr.display_name as post_author from posts
             left join users usr
             on usr.userid = author_id;`, []); */
-        const { data, error } = await supabase
-            .from('posts')
-            .select(`
-                post_id, 
-                post_title, 
-                post_body, 
-                post_date, 
-                post_author:users(display_name)
-            `);
+        const { data, error } = await supabase.rpc('get_all_posts');
         res.json(data);
     }
 })

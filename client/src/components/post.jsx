@@ -22,8 +22,11 @@ export default function Post(props) {
             <h1>
                 {props.info.post_title}
             </h1>
+            <h4>
+                Posted by {props.info.display_name} on {props.info.post_date}
+            </h4>
             <div>
-                {props.info.content}
+                {props.info.post_body}
             </div>
             {hasDel? <button
                         className="btn btn-danger btn-primary"

@@ -28,7 +28,9 @@ app.use(session({
     resave: false,
     httpOnly: true,
     cookie: {
-        maxAge: 60000 * 60
+        maxAge: 60000 * 60,
+        secure: true,
+        sameSite: 'None'
     },
     store: new session.MemoryStore({
         checkPeriod: 86400000

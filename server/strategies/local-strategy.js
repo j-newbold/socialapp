@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const supabase = require('../config/supabaseClient.js');
 
 passport.serializeUser((user, done) => {
-    done(null, user.userid);
+    return done(null, user.userid);
 });
 
 passport.deserializeUser(async (id, done) => {
@@ -16,9 +16,9 @@ passport.deserializeUser(async (id, done) => {
             .select()
             .eq('userid', id);
         if (data.length == 0) throw new Error('user not found');
-        done(null, data[0]);
+        return done(null, data[0]);
     } catch (error) {
-        done(error, null);
+        return done(error, null);
     }
 })
 

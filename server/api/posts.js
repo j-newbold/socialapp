@@ -17,7 +17,7 @@ router.post('/createpost', async (req, res) => {
                 post_title: req.body.title,
                 post_body: req.body.postBody,
                 post_date: currentTimestamp
-            })
+            });
         res.sendStatus(200);
     } else {
         res.send({ msg: 'error' });

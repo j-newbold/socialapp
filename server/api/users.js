@@ -54,8 +54,8 @@ router.post('/follow', async (req, res) => {
                                         [req.user.userid, req.body.userToFollow]); */
         const { error } = await supabase
             .from('follows')
-            .insert({ user_follower: req.user.userid, user_followed: req.body.userToFollow })
-        if (error) console.error(error)
+            .insert({ user_follower: req.user.userid,
+                user_followed: req.body.userToFollow });
         res.sendStatus(200);
     } catch (error) {
         console.log(error);
@@ -68,12 +68,17 @@ router.delete('/unfollow', async (req, res) => {
                             WHERE user_follower = $1
                             AND user_followed = $2`,
                         [req.user.userid, req.body.userUnFollowed]); */
-    const { error } = await supabase
-        .from('follows')
-        .delete()
-        .eq('user_follower', req.user.userid)
-        .eq('user_followed', req.body.userUnFollowed);
-    res.sendStatus(200);
+    try {
+        const { error } = await supabase
+            .from('follows')
+            .delete()
+            .eq('user_follower', req.user.userid)
+            .eq('user_followed', req.body.userUnFollowed);
+        res.sendStatus(200);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(400);
+    }
 })
 
 module.exports = router;

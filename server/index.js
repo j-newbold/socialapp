@@ -32,9 +32,9 @@ app.use(session({
     resave: false,
     cookie: {
         httpOnly: true,
-        sameSite: 'none',
+        //sameSite: 'none',
         maxAge: 60000 * 60,
-        secure: true
+        //secure: true
     },
     store: new (require('connect-pg-simple')(session))({
         pool: pool,

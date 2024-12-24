@@ -3,12 +3,25 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { Link } from 'react-router-dom';
 import './App.css';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import UserContext from './utils/UserContext';
+import { Button, Navbar, Nav } from 'react-bootstrap';
 
 export default function App() {
     const curUser = useContext(UserContext);
+
+    const debug = async () => {
+        try {
+            const response = await fetch(import.meta.env.VITE_API_URL+'test', {
+                method: 'get',
+                credentials: 'include',
+                headers: { "Content-Type": "application/json"}
+            })
+            const jsonData = await response.json();
+            console.log(jsonData);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     const logOut =  () => {
         try {
@@ -61,11 +74,12 @@ export default function App() {
                             User Search
                         </Nav.Link>
                     </Nav>
-                    <Nav className='ms-auto' nav-links>
+                    <Nav className='ms-auto nav-links'>
                         {postLink}
                         {profileLink}
                         {logLink}
                     </Nav>
+                    <Button onClick={debug}>debug</Button>
                 </div>
             </Navbar>
         </>

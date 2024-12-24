@@ -51,7 +51,7 @@ app.use('/users', usersRouter);
 app.use('/posts', postRouter);
 
 app.get('/test', (req, res) => {
-    res.send(req.session);
+    res.send(req.user);
 });
 
 

@@ -34,7 +34,7 @@ app.use(session({
         httpOnly: true,
         //sameSite: 'none',
         maxAge: 60000 * 60,
-        //secure: true
+        secure: false
     },
     store: new (require('connect-pg-simple')(session))({
         pool: pool,

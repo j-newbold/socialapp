@@ -14,7 +14,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 var passport = require('passport');
 require('./strategies/local-strategy.js')(passport);
+
+
 const session = require('express-session');
+var cookieSession = require('cookie-session');
 
 const authRouter = require('./api/auth.js');
 const usersRouter = require('./api/users.js');
@@ -22,6 +25,7 @@ const postRouter = require('./api/posts.js');
 
 app.use(express.json());
 app.use(cookieParser());
+app.set('trust proxy', 1);
 app.use(session({
     secret: 'jnewbold',
     saveUninitialized: false,

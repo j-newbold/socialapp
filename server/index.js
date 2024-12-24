@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const supabase = require('./config/supabaseClient');
+const pool = require('./db');
 
 const app = express();
 const cors = require('cors');
@@ -14,14 +15,13 @@ app.use(cors(corsOptions));
 var passport = require('passport');
 require('./strategies/local-strategy.js')(passport);
 const session = require('express-session');
-const MemoryStore = require('memorystore')(session);
 
 const authRouter = require('./api/auth.js');
 const usersRouter = require('./api/users.js');
 const postRouter = require('./api/posts.js');
 
 app.use(express.json());
-app.use(cookieParser("helloworld"));
+app.use(cookieParser());
 app.use(session({
     secret: 'jnewbold',
     saveUninitialized: false,
@@ -30,15 +30,15 @@ app.use(session({
     cookie: {
         maxAge: 60000 * 60
     },
-    store: new session.MemoryStore({
-        checkPeriod: 86400000
+    store: new (require('connect-pg-simple')(session))({
+        pool: pool,
+        tableName: 'session'
     })
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-const pool = require('./db');
 
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);

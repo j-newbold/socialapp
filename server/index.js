@@ -25,14 +25,15 @@ const postRouter = require('./api/posts.js');
 
 app.use(express.json());
 app.use(cookieParser());
-app.set('trust proxy', 1);
 app.use(session({
     secret: 'jnewbold',
     saveUninitialized: false,
     resave: false,
     httpOnly: true,
+    sameSite: 'none',
     cookie: {
-        maxAge: 60000 * 60
+        maxAge: 60000 * 60,
+        secure: true
     },
     store: new (require('connect-pg-simple')(session))({
         pool: pool,

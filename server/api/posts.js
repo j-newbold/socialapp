@@ -56,7 +56,7 @@ router.delete('/post', (req, res) => {
         const { error } = supabase
             .from('posts')
             .delete()
-            .eq('id', req.body.postId);
+            .eq('post_id', req.body.postId);
         res.sendStatus(200);
     } else {
         res.sendStatus(401);

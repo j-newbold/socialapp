@@ -23,6 +23,7 @@ const authRouter = require('./api/auth.js');
 const usersRouter = require('./api/users.js');
 const postRouter = require('./api/posts.js');
 
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 app.use(session({

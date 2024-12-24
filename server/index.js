@@ -30,9 +30,9 @@ app.use(session({
     secret: 'jnewbold',
     saveUninitialized: false,
     resave: false,
-    httpOnly: true,
-    sameSite: 'none',
     cookie: {
+        httpOnly: true,
+        sameSite: 'none',
         maxAge: 60000 * 60,
         secure: true
     },

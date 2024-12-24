@@ -31,10 +31,10 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        httpOnly: true,
-        //sameSite: 'none',
+        httpOnly: process.env.NODE_ENV === 'dev'? true : true,
+        sameSite: process.env.NODE_ENV === 'production'? 'none' : '',
         maxAge: 60000 * 60,
-        secure: false
+        secure: process.env.NODE_ENV === 'production'? true : false
     },
     store: new (require('connect-pg-simple')(session))({
         pool: pool,

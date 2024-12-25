@@ -41,11 +41,11 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-router.delete("/deleteacc", (req, res) => {
+router.delete("/deleteacc", async (req, res) => {
 /*     pool.query(`DELETE FROM users
         WHERE userid = $1`,
     [req.user.userid]); */
-    const response = supabase
+    const response = await supabase
         .from('users')
         .delete()
         .eq('userid',req.user.userid);

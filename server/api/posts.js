@@ -48,12 +48,12 @@ router.get('/posts', async (req, res) => {
     }
 })
 
-router.delete('/post', (req, res) => {
+router.delete('/post', async (req, res) => {
     if (req.user) {
 /*         pool.query(`DELETE FROM posts
                         WHERE post_id = $1`,
                         [req.body.postId]); */
-        const { error } = supabase
+        const { error } = await supabase
             .from('posts')
             .delete()
             .eq('post_id', req.body.postId);
